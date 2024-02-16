@@ -9,12 +9,24 @@ computer_grid = [['.' for _ in range(grid_size)] for _ in range(grid_size)]
 revealed_player_grid = [['.' for _ in range(grid_size)] for _ in range(grid_size)]
 revealed_computer_grid = [['.' for _ in range(grid_size)] for _ in range(grid_size)]
 
+# Initialize scores
+player_score = 0
+computer_score = 0
+
 # Function to display a grid
 def display_grid(grid, hide_ships=False):
     for i in range(grid_size):
         for j in range(grid_size):
-            if hide_ships and grid is computer_grid and revealed_computer_grid[i][j] == 'X':
-                print('.', end=' ')
+            if grid is player_grid and revealed_player_grid[i][j] == 'O':
+                print('O', end=' ')  # Display misses as 'O' for the player
+            elif grid is player_grid and revealed_player_grid[i][j] == '*':
+                print('*', end=' ')  # Display hits as '*' for the player
+            elif grid is computer_grid and revealed_computer_grid[i][j] == 'O':
+                print('O', end=' ')  # Display misses as 'O' for the computer
+            elif grid is computer_grid and revealed_computer_grid[i][j] == '*':
+                print('*', end=' ')  # Display hits as '*' for the computer
+            elif hide_ships and grid is computer_grid and revealed_computer_grid[i][j] == 'X':
+                print('.', end=' ')  # Print '.' to hide the ship for the computer
             else:
                 print(grid[i][j], end=' ')
         print()
@@ -29,6 +41,7 @@ def place_ships_randomly(grid, num_ships, hide_ships=False):
 
 # Function for the player's turn
 def player_turn():
+    global player_score
     while True:
         try:
             row = int(input("Enter the row to attack (0-4): "))
@@ -42,6 +55,7 @@ def player_turn():
                     if computer_grid[row][col] == 'X':
                         print("Hit!\n")
                         revealed_computer_grid[row][col] = '*'
+                        player_score += 1
                     else:
                         print("Miss!\n")
                         revealed_computer_grid[row][col] = 'O'
@@ -53,6 +67,7 @@ def player_turn():
 
 # Function for the computer's turn
 def computer_turn():
+    global computer_score
     while True:
         row = random.randint(0, grid_size - 1)
         col = random.randint(0, grid_size - 1)
@@ -61,35 +76,57 @@ def computer_turn():
             if player_grid[row][col] == 'X':
                 print("Computer hit!\n")
                 revealed_player_grid[row][col] = '*'
+                computer_score += 1
             else:
                 print("Computer missed!\n")
                 revealed_player_grid[row][col] = 'O'
             break
 
-# Randomly place ships for both player and computer
-place_ships_randomly(player_grid, num_ships)
-place_ships_randomly(computer_grid, num_ships, hide_ships=True)  # Hide ships for the computer
+# Function to play battleship game
+def play_battleship():
+    global player_score, computer_score
+    print("\n--- New Game ---")
+    # Reset scores
+    player_score = 0
+    computer_score = 0
+    
+    # Randomly place ships for both player and computer
+    place_ships_randomly(player_grid, num_ships)
+    place_ships_randomly(computer_grid, num_ships)  # Let the computer have ships
+    
+    # Display player's grid
+    print("Player's Grid:")
+    display_grid(player_grid)
 
-# Display player's grid
-print("Player's Grid:")
-display_grid(player_grid)
+    # Display computer's grid
+    print("Computer's Grid:")
+    display_grid(computer_grid)
 
-# Display computer's grid with hidden ships
-print("Computer's Grid:")
-display_grid(computer_grid, hide_ships=True)
+    # Main game loop
+    while True:
+        # Player's turn
+        print("Player's Turn:")
+        player_turn()
+        print("Player's Grid:")
+        display_grid(player_grid)
+        print("Computer's Grid:")
+        display_grid(computer_grid)
+        if player_score == 4:
+            print("Congratulations! You win!")
+            return False  # End the game
+        
+        # Computer's turn
+        print("\nComputer's Turn:")
+        computer_turn()
+        print("Player's Grid:")
+        display_grid(player_grid)
+        print("Computer's Grid:")
+        display_grid(computer_grid)
+        if computer_score == 4:
+            print("Computer wins! Better luck next time.")
+            return False  # End the game
 
-# Player's turn
-print("Player's Turn:\n")
-player_turn()
-
-# Computer's turn
-print("\nComputer's Turn:\n")
-computer_turn()
-
-# Display updated player's grid
-print("Player's Grid:")
-display_grid(player_grid)
-
-# Display updated computer's grid with hidden ships
-print("\nComputer's Grid:")
-display_grid(computer_grid, hide_ships=True)
+# Main game loop
+while True:
+    if not play_battleship():
+        break
