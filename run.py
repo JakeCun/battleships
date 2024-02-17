@@ -3,10 +3,6 @@ import random
 grid_size = 5 
 num_ships = 4
 
-# Initialize grids
-player_grid = [['.' for _ in range(grid_size)] for _ in range(grid_size)]
-computer_grid = [['.' for _ in range(grid_size)] for _ in range(grid_size)]
-
 # Initialize scores
 player_score = 0
 computer_score = 0
@@ -101,14 +97,19 @@ def computer_turn():
 
 
 # Function to play battleship game
-
 def play_battleship():
+    global player_grid
+    global computer_grid
     global player_score
     global computer_score
     print("\n--- New Game ---")
     # Reset player's score
     player_score = 0
     computer_score = 0
+    
+    # Reset grids
+    player_grid = [['.' for _ in range(grid_size)] for _ in range(grid_size)]
+    computer_grid = [['.' for _ in range(grid_size)] for _ in range(grid_size)]
     
     # Reset attacked positions
     player_attacks.clear()
@@ -167,6 +168,6 @@ def play_battleship():
         return False
 
 # Main game loop
-while True:
-    if not play_battleship():
-        break
+play_again = True
+while play_again:
+    play_again = play_battleship()
