@@ -36,7 +36,6 @@ def place_ships_randomly(grid, num_ships):
         grid[row][col] = 'X'
 
 # Function for the player's turn
-# Function for the player's turn
 def player_turn():
     global player_score
     while True:
@@ -117,7 +116,7 @@ def play_battleship():
         print(f"Player's Score: {player_score}")
 
         # Print computer's score
-        print(f"computer's Score: {computer_score}")
+        print(f"Computer's Score: {computer_score}")
         
         # Check for game end conditions
         if player_score == 4:
