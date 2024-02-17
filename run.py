@@ -109,6 +109,7 @@ def play_battleship():
 
     print("\n--- New Game ---")
 
+
     # Reset player's score
     player_score = 0
     computer_score = 0
@@ -139,6 +140,10 @@ def play_battleship():
     
     # Main game loop
     while True:
+
+        
+
+
         # Player's turn
         print("Player's Turn:")
         player_turn()
@@ -174,7 +179,7 @@ def play_battleship():
     print(f"Total Computer Wins: {total_computer_wins}")
 
 # Ask if the player wants to play
-play = input("Do you want to play Battleship? (y/n): ")
+play = input("Guess the coordinates on your opponent's grid (e.g., 3, 2) to locate their ships, aiming to land hits and sink them while avoiding misses to win the game.\nDo you want to play Battleship? (y/n): ")
 while play.lower() == 'y':
     play_battleship()
     play = input("Do you want to play again? (y/n): ")
