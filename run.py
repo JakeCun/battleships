@@ -3,9 +3,11 @@ import random
 grid_size = 5 
 num_ships = 4
 
-# Initialize scores
+# Initialize scores and overall game score counter
 player_score = 0
 computer_score = 0
+total_player_wins = 0
+total_computer_wins = 0
 
 # Keep track of attacked positions
 player_attacks = set()
@@ -102,6 +104,9 @@ def play_battleship():
     global computer_grid
     global player_score
     global computer_score
+    global total_player_wins
+    global total_computer_wins
+    
     print("\n--- New Game ---")
     # Reset player's score
     player_score = 0
@@ -156,10 +161,16 @@ def play_battleship():
         # Check for game end conditions
         if player_score == 4:
             print("Congratulations! You win!")
+            total_player_wins += 1
             break  # End the game
         elif computer_score == 4:
             print("Computer wins! Better luck next time.")
+            total_computer_wins += 1
             break  # End the game
+
+    # Print overall game scores
+    print(f"Total Player Wins: {total_player_wins}")
+    print(f"Total Computer Wins: {total_computer_wins}")
 
     play_again = input("Do you want to play again? (y/n): ")
     if play_again.lower() == 'y':
