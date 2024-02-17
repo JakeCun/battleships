@@ -34,10 +34,22 @@ def display_grid(grid, hide_ships=False, revealed_guesses=None):
 
 # Function to randomly place ships on the grid
 def place_ships_randomly(grid, num_ships):
-    for _ in range(num_ships):
+    placed_ships = set()  # Keep track of placed ships
+    while len(placed_ships) < num_ships:
         row = random.randint(0, grid_size - 1)
         col = random.randint(0, grid_size - 1)
-        grid[row][col] = 'X'
+        if (row, col) not in placed_ships:  # Check if the position is not occupied
+            grid[row][col] = 'X'
+            placed_ships.add((row, col))  # Add the placed ship position to the set
+
+# Function to display ship locations
+def display_ship_locations(grid):
+    print("Ship Locations:")
+    for i in range(grid_size):
+        for j in range(grid_size):
+            if grid[i][j] == 'X':
+                print(f"({i}, {j})", end=' ')
+    print()
 
 # Function for the player's turn
 def player_turn():
@@ -106,6 +118,10 @@ def play_battleship():
     place_ships_randomly(player_grid, num_ships)
     place_ships_randomly(computer_grid, num_ships)
     
+    # Display ship locations
+    display_ship_locations(player_grid)
+    display_ship_locations(computer_grid)
+    
     # Display player's grid
     print("Player's Grid:")
     display_grid(player_grid)
@@ -139,11 +155,16 @@ def play_battleship():
         # Check for game end conditions
         if player_score == 4:
             print("Congratulations! You win!")
-            return False  # End the game
+            break  # End the game
         elif computer_score == 4:
             print("Computer wins! Better luck next time.")
-            return False  # End the game
+            break  # End the game
 
+    play_again = input("Do you want to play again? (y/n): ")
+    if play_again.lower() == 'y':
+        return True
+    else:
+        return False
 
 # Main game loop
 while True:
