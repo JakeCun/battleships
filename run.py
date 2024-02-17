@@ -97,23 +97,23 @@ def play_battleship():
     while True:
         # Player's turn
         print("Player's Turn:")
-        computer_turn()
-        print("Player's Grid:")
-        display_grid(player_grid, revealed_guesses=computer_grid)
-        print("Computer's Grid:")
-        display_grid(computer_grid, hide_ships=True)  # Hide computer's ships
-        if player_score == 4:
-            print("Congratulations! You win!")
-            return False  # End the game
+        player_turn()
         
         # Computer's turn
         print("\nComputer's Turn:")
-        player_turn()
-        print("Player's Grid:")
-        display_grid(player_grid, revealed_guesses=computer_grid)
+        computer_turn()
+        
+        # Display grids after both turns
+        print("\nPlayer's Grid:")
+        display_grid(player_grid)
         print("Computer's Grid:")
-        display_grid(computer_grid, hide_ships=True)  # Hide computer's ships
-        if computer_score == 4:
+        display_grid(computer_grid, hide_ships=True)
+        
+        # Check for game end conditions
+        if player_score == 4:
+            print("Congratulations! You win!")
+            return False  # End the game
+        elif computer_score == 4:
             print("Computer wins! Better luck next time.")
             return False  # End the game
 
