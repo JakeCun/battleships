@@ -11,6 +11,10 @@ computer_grid = [['.' for _ in range(grid_size)] for _ in range(grid_size)]
 player_score = 0
 computer_score = 0
 
+# Keep track of attacked positions
+player_attacks = set()
+computer_attacks = set()
+
 # Function to display a grid
 def display_grid(grid, hide_ships=False, revealed_guesses=None):
     for i in range(grid_size):
@@ -43,7 +47,12 @@ def player_turn():
             row = int(input("Enter the row to attack (0-4): "))
             col = int(input("Enter the column to attack (0-4): "))
             
+            if (row, col) in player_attacks:
+                print("You've already attacked this cell. Please choose another location.")
+                continue
+            
             if 0 <= row < grid_size and 0 <= col < grid_size:
+                player_attacks.add((row, col))  # Add the attacked position to the set
                 if computer_grid[row][col] == 'X':
                     print("Hit!\n")
                     computer_grid[row][col] = '*'
@@ -64,6 +73,11 @@ def computer_turn():
         row = random.randint(0, grid_size - 1)
         col = random.randint(0, grid_size - 1)
         
+        if (row, col) in computer_attacks:
+            continue  # If the computer has already attacked this position, choose another one
+        
+        computer_attacks.add((row, col))  # Add the attacked position to the set
+        
         if player_grid[row][col] == 'X':
             print("Computer hit at ({}, {})!\n".format(row, col))
             player_grid[row][col] = '*'
@@ -83,6 +97,10 @@ def play_battleship():
     # Reset player's score
     player_score = 0
     computer_score = 0
+    
+    # Reset attacked positions
+    player_attacks.clear()
+    computer_attacks.clear()
     
     # Randomly place ships for both player and computer
     place_ships_randomly(player_grid, num_ships)
