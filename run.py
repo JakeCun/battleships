@@ -40,6 +40,7 @@ def place_ships_randomly(grid, num_ships):
             grid[row][col] = 'X'
             placed_ships.add((row, col))  # Add the placed ship position to the set
 
+'''
 # Function to display ship locations
 def display_ship_locations(grid):
     print("Ship Locations:")
@@ -48,6 +49,7 @@ def display_ship_locations(grid):
             if grid[i][j] == 'X':
                 print(f"({i}, {j})", end=' ')
     print()
+'''
 
 # Function for the player's turn
 def player_turn():
@@ -127,8 +129,8 @@ def play_battleship():
     place_ships_randomly(computer_grid, num_ships)
     
     # Display ship locations
-    display_ship_locations(player_grid)
-    display_ship_locations(computer_grid)
+    # display_ship_locations(player_grid)
+    # display_ship_locations(computer_grid)
     
     # Display player's grid
     print("Player's Grid:")
