@@ -1,6 +1,6 @@
 import random
 
-grid_size = 5 
+grid_size = 5
 num_ships = 4
 
 # Initialize scores and overall game score counter
@@ -106,8 +106,9 @@ def play_battleship():
     global computer_score
     global total_player_wins
     global total_computer_wins
-    
+
     print("\n--- New Game ---")
+
     # Reset player's score
     player_score = 0
     computer_score = 0
@@ -172,13 +173,9 @@ def play_battleship():
     print(f"Total Player Wins: {total_player_wins}")
     print(f"Total Computer Wins: {total_computer_wins}")
 
-    play_again = input("Do you want to play again? (y/n): ")
-    if play_again.lower() == 'y':
-        return True
-    else:
-        return False
-
-# Main game loop
-play_again = True
-while play_again:
-    play_again = play_battleship()
+# Ask if the player wants to play
+play = input("Do you want to play Battleship? (y/n): ")
+while play.lower() == 'y':
+    play_battleship()
+    play = input("Do you want to play again? (y/n): ")
+print("Goodbye!")
