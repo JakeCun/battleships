@@ -36,8 +36,9 @@ def place_ships_randomly(grid, num_ships):
         grid[row][col] = 'X'
 
 # Function for the player's turn
+# Function for the player's turn
 def player_turn():
-    global computer_score
+    global player_score
     while True:
         try:
             row = int(input("Enter the row to attack (0-4): "))
@@ -47,7 +48,7 @@ def player_turn():
                 if computer_grid[row][col] == 'X':
                     print("Hit!\n")
                     computer_grid[row][col] = '*'
-                    computer_score += 1
+                    player_score += 1  # Increment player's score when they hit the computer's ship
                 else:
                     print("Miss!\n")
                     computer_grid[row][col] = 'O'
@@ -59,7 +60,7 @@ def player_turn():
 
 # Function for the computer's turn
 def computer_turn():
-    global player_score
+    global computer_score
     while True:
         row = random.randint(0, grid_size - 1)
         col = random.randint(0, grid_size - 1)
@@ -67,17 +68,20 @@ def computer_turn():
         if player_grid[row][col] == 'X':
             print("Computer hit at ({}, {})!\n".format(row, col))
             player_grid[row][col] = '*'
-            player_score += 1
+            computer_score += 1  # Increment computer's score when it hits the player's ship
         else:
             print("Computer missed at ({}, {})!\n".format(row, col))
             player_grid[row][col] = 'O'
         break
 
+
 # Function to play battleship game
+
 def play_battleship():
-    global player_score, computer_score
+    global player_score
+    global computer_score
     print("\n--- New Game ---")
-    # Reset scores
+    # Reset player's score
     player_score = 0
     computer_score = 0
     
@@ -109,6 +113,12 @@ def play_battleship():
         print("Computer's Grid:")
         display_grid(computer_grid, hide_ships=True)
         
+        # Print player's score
+        print(f"Player's Score: {player_score}")
+
+        # Print computer's score
+        print(f"computer's Score: {computer_score}")
+        
         # Check for game end conditions
         if player_score == 4:
             print("Congratulations! You win!")
@@ -116,6 +126,7 @@ def play_battleship():
         elif computer_score == 4:
             print("Computer wins! Better luck next time.")
             return False  # End the game
+
 
 # Main game loop
 while True:
