@@ -1,5 +1,6 @@
 import random
 
+
 class BattleshipGame:
     def __init__(self, grid_size=5, num_ships=4):
         self.grid_size = grid_size
@@ -10,8 +11,10 @@ class BattleshipGame:
         self.total_computer_wins = 0
         self.player_attacks = set()
         self.computer_attacks = set()
-        self.player_grid = [["." for _ in range(grid_size)] for _ in range(grid_size)]
-        self.computer_grid = [["." for _ in range(grid_size)] for _ in range(grid_size)]
+        self.player_grid = [["." for _ in range(grid_size)]
+                            for _ in range(grid_size)]
+        self.computer_grid = [["." for _ in range(grid_size)]
+                              for _ in range(grid_size)]
         self.place_ships_randomly(self.player_grid)
         self.place_ships_randomly(self.computer_grid)
 
@@ -47,7 +50,8 @@ class BattleshipGame:
                 col = int(input("Enter the column to attack (0-4): "))
 
                 if (row, col) in self.player_attacks:
-                    print("You've already attacked this cell. Please choose another location.")
+                    print("You've already attacked this cell. "
+                          "Please choose another location.")
                     continue
 
                 if 0 <= row < self.grid_size and 0 <= col < self.grid_size:
@@ -85,8 +89,10 @@ class BattleshipGame:
         print("\n--- New Game ---")
         self.player_score = 0
         self.computer_score = 0
-        self.player_grid = [["." for _ in range(self.grid_size)] for _ in range(self.grid_size)]
-        self.computer_grid = [["." for _ in range(self.grid_size)] for _ in range(self.grid_size)]
+        self.player_grid = [["." for _ in range(self.grid_size)]
+                            for _ in range(self.grid_size)]
+        self.computer_grid = [["." for _ in range(self.grid_size)]
+                              for _ in range(self.grid_size)]
         self.player_attacks.clear()
         self.computer_attacks.clear()
         self.place_ships_randomly(self.player_grid)
@@ -119,11 +125,16 @@ class BattleshipGame:
         print(f"Total Computer Wins: {self.total_computer_wins}")
 
     def start_game(self):
-        play = input("Guess the coordinates on your opponent's grid (e.g., 3,2) to locate their ships, aiming sink them while avoiding misses to win the game. \nDo you want to play Battleship? (y/n): ")
+        play = input(
+            "Guess the coordinates on your opponent's grid (e.g., 3,2) "
+            "to locate their ships, sink them while avoiding misses to win"
+            "\nDo you want to play Battleship? (y/n):")
+
         while play.lower() == "y":
             self.play_battleship()
             play = input("Do you want to play again? (y/n): ")
         print("Goodbye!")
+
 
 if __name__ == "__main__":
     game = BattleshipGame()
