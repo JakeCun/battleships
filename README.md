@@ -1,32 +1,38 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Battleships
 
-Welcome,
+[Live Deployment of the game here](https://battle-ships-jc-e50b599c051e.herokuapp.com/)
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **March 14, 2023**
+![amiresponsive](docs/images/amiresponsive.png)
 
-## Reminders
+## How to play
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
+In this game of Battleships, they player gets their grid with randomly placed ships represented by "X" the player then gets to guess the location of the computers ships, which are not marked on the grid.
 
-## Creating the Heroku app
+If the player guesses correctly and hits a ship, that is represented by "*" if they guess incorrectly, a miss is represented by "O".
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+the player and computer take turns guessing coordinates until all ships are sank and a score of 4 is reached, after this score is reached then the player get the option to play again, and an overall tally tracks the results of each game played, this can go on until the player choses not to play any more.
 
-1. `heroku/python`
-2. `heroku/nodejs`
+## Features
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+## Testing
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+I have manually tested this project by doing the following:
+- Passed the code through a PEP8 linter and confirmed there are no problems
+- Given invalid inputs: strings when numbers are expected, out of bounds inputs, same input twice
+- Tested in my local terminal and the Code Institute Heroku terminal
 
-Connect your GitHub repository and deploy as normal.
+### Unfixed Bugs
 
-## Constraints
+There are no unfixed bugs
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+## Deployment
 
----
+This project was deployed using Code Institute's mock terminal for Heroku.
+- Steps for deployment:
+- Fork or clone this repository
+- Create a new Heroku app
+- Set the build backs to Python and NodeJS in that order
+- Link the Heroku app to the repository
+- Click on Deploy
 
-Happy coding!
+## Credits
