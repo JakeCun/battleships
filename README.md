@@ -2,7 +2,7 @@
 
 [Live Deployment of the game here](https://battle-ships-jc-e50b599c051e.herokuapp.com/)
 
-![amiresponsive](docs/images/amiresponsive.png)
+![amiresponsive](images/amiresponsive.JPG)
 
 ## How to play
 
@@ -10,9 +10,42 @@ In this game of Battleships, they player gets their grid with randomly placed sh
 
 If the player guesses correctly and hits a ship, that is represented by "*" if they guess incorrectly, a miss is represented by "O".
 
-the player and computer take turns guessing coordinates until all ships are sank and a score of 4 is reached, after this score is reached then the player get the option to play again, and an overall tally tracks the results of each game played, this can go on until the player choses not to play any more.
+The player and computer take turns guessing coordinates until all ships are sank and a score of 4 is reached, after this score is reached then the player get the option to play again, and an overall tally tracks the results of each game played, this can go on until the player choses not to play any more.
 
 ## Features
+### Existing Features
+- Random board generation
+    - A player and computer board are randomly genreated at the start of each game
+    - Both grids have ships randomy placed 
+
+![randomboard](images/new-game-grids.JPG)
+
+- Play against computer
+
+- Score tracker
+
+- User input
+
+![playerturn](images/player-turn.JPG)
+
+- Input validation and error checking
+    - Cannot guess the same place twice
+    - Must be a number
+    - Must be withing the size of the grid
+
+![validation](images/validation.JPG)
+
+- Replayability
+    - Option to play again
+    - Overall score tracking for each game
+
+![replay](images/replay.JPG)
+
+### Future Features
+
+- 2 player functionality
+- Custom grid size
+- Bigger ship size
 
 ## Data Model
 
@@ -47,5 +80,3 @@ This project was deployed using Code Institute's mock terminal for Heroku.
 - Set the build backs to Python and NodeJS in that order
 - Link the Heroku app to the repository
 - Click on Deploy
-
-## Credits
