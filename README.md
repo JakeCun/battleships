@@ -14,6 +14,10 @@ the player and computer take turns guessing coordinates until all ships are sank
 
 ## Features
 
+## Data Model
+
+The BattleshipGame class controls a game of Battleship. It sets up the game board, places ships randomly, and manages turns for the player and computer. Players take turns attacking by inputting coordinates, and the game updates the board accordingly. The class handles scoring and determines the winner. The play_battleship method orchestrates the game, while start_game starts the game and allows for multiple rounds. Overall, it provides a structured way to play Battleship with clear rules and outcomes.
+
 ## Testing
 
 I have manually tested this project by doing the following:
@@ -21,9 +25,18 @@ I have manually tested this project by doing the following:
 - Given invalid inputs: strings when numbers are expected, out of bounds inputs, same input twice
 - Tested in my local terminal and the Code Institute Heroku terminal
 
-### Unfixed Bugs
+### Solved Bugs
 
-There are no unfixed bugs
+- The issue stemmed from ships overlapping during random placement, which could result in scenarios where the player couldn't finish the game and win. I addressed this by introducing a condition in the place_ships_randomly function to ensure that each selected position for ship placement was not already occupied, preventing ship overlap and ensuring fair gameplay. This fix enabled the player to have a reasonable chance of winning by eliminating the possibility of unsolvable game states due to ship overlap.
+
+### Unsolved Bugs
+
+- There are no unfixed bugs
+
+### Validator testing
+- PEP8
+    - No error were returned from https://pep8ci.herokuapp.com/
+    
 
 ## Deployment
 
